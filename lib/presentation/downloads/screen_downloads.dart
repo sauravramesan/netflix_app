@@ -43,6 +43,7 @@ class Section2 extends StatelessWidget {
     return Column(
       children: [
         kheight,
+        kheight,
         const Text(
           'Introducing Downloads for You',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -120,6 +121,7 @@ class Section3 extends StatelessWidget {
             ),
           ),
         ),
+        kheight,
         kheight,
         Padding(
           padding: const EdgeInsets.symmetric(
