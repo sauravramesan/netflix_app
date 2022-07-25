@@ -1,7 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix_app/domain/core/colors/colors.dart';
 import 'package:netflix_app/domain/core/constants.dart';
+import 'package:netflix_app/presentation/home/widgets/custom_button_widget.dart';
+import 'package:netflix_app/presentation/new_and_hot/widgets/coming_soon_widget.dart';
+import 'package:netflix_app/presentation/new_and_hot/widgets/everyone_watching.dart';
+import 'package:netflix_app/presentation/new_and_hot/widgets/video_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({Key? key}) : super(key: key);
@@ -49,55 +54,24 @@ class ScreenNewAndHot extends StatelessWidget {
           ),
         ),
         body: TabBarView(children: [
-          _buildComingSoon(context),
+          _buildComingSoon(),
           _buildEveryoneWatching(),
         ]),
       ),
     );
   }
 
-  _buildComingSoon(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return ListView(
-      children: [
-        kheight,
-        Row(
-          children: [
-            SizedBox(
-              width: 50,
-              height: 500,
-              child: Column(
-                children: const [
-                  Text(
-                    'FEB',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey),
-                  ),
-                  Text(
-                    '11',
-                    style: TextStyle(
-                      letterSpacing: 2,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: size.width - 50,
-              height: 500,
-              color: kWhiteColor,
-            ),
-          ],
-        ),
-      ],
+  _buildComingSoon() {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => const ComingSoonWidget(),
     );
   }
 
-  _buildEveryoneWatching() {
-    return Text('Hello');
+  Widget _buildEveryoneWatching() {
+    return ListView.builder(
+        itemBuilder: ((BuildContext context, index) =>
+            const EveryoneWatchingWidget()),
+            itemCount: 10,);
   }
 }
