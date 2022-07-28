@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_app/application/downloads/downloads_bloc.dart';
 import 'package:netflix_app/domain/core/colors/colors.dart';
 import 'package:netflix_app/domain/core/constants.dart';
 import 'package:netflix_app/presentation/widgets/app_bar_widget.dart';
@@ -21,7 +23,7 @@ class ScreenDownload extends StatelessWidget {
               title: 'Downloads',
             )),
         body: ListView.separated(
-          physics: const BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.all(10),
             itemBuilder: (context, index) => _widgetList[index],
             separatorBuilder: (context, index) => kheight,
@@ -32,13 +34,13 @@ class ScreenDownload extends StatelessWidget {
 class Section2 extends StatelessWidget {
   Section2({Key? key}) : super(key: key);
 
-  final List imageList = [
-    "https://moviegalleri.net/wp-content/uploads/2018/06/Vijay-Devarakonda-Rashmika-Mandanna-Geetha-Govindam-First-Look-Poster-HD.jpg",
-    "https://moviegalleri.net/wp-content/gallery/meesaya-murukku-movie-release-posters/meesaya-murukku-movie-release-posters-hiphop-tamizha-adhi-aathmika-8e359ff.jpg",
-    "https://images.immediate.co.uk/remote/m.media-amazon.com/images/M/MV5BZTNiZGFiNWMtMjQ0MS00OWVhLWFkMTktM2UyOTFmNWE3NzgwXkEyXkFqcGdeQXVyMjkxNzQ1NDI@._V1_.jpg?quality=90&webp=true&resize=650,950",
-  ];
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+
+    //  });
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -54,39 +56,54 @@ class Section2 extends StatelessWidget {
             'We will download a personalised selection of\nmovies and shows for you, So there is\nsomthing for watch on your\ndevice',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey, fontSize: 16)),
-        SizedBox(
-          width: size.width,
-          height: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Center(
-                child: CircleAvatar(
-                  backgroundColor: Colors.grey.withOpacity(0.5),
-                  radius: size.width * 0.375,
-                ),
-              ),
-              DownloadsImageWidget(
-                imageList: imageList[0],
-                margin: const EdgeInsets.only(right: 160, bottom: 50, top: 30),
-                angle: -13,
-                size: Size(size.width * 0.4, size.height * 0.26),
-              ),
-              DownloadsImageWidget(
-                imageList: imageList[1],
-                margin: const EdgeInsets.only(left: 160, bottom: 50, top: 30),
-                angle: 13,
-                size: Size(size.width * 0.4, size.height * 0.26),
-              ),
-              DownloadsImageWidget(
-                radius: 50,
-                size: Size(size.width * 0.4, size.height * 0.28),
-                imageList: imageList[2],
-                margin: const EdgeInsets.only(top: 1),
-                angle: 0,
-              ),
-            ],
-          ),
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: size.width,
+              height: size.width,
+              child: state.isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : state.downloads!.isEmpty
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Center(
+                              child: CircleAvatar(
+                                backgroundColor: Colors.grey.withOpacity(0.5),
+                                radius: size.width * 0.375,
+                              ),
+                            ),
+                            DownloadsImageWidget(
+                              imageList:
+                                  '$imageAppendUrl${state.downloads![0].posterPath}',
+                              margin: const EdgeInsets.only(
+                                  right: 160, bottom: 50, top: 30),
+                              angle: -13,
+                              size: Size(size.width * 0.4, size.height * 0.26),
+                            ),
+                            DownloadsImageWidget(
+                              imageList:
+                                  '$imageAppendUrl${state.downloads![1].posterPath}',
+                              margin: const EdgeInsets.only(
+                                  left: 160, bottom: 50, top: 30),
+                              angle: 13,
+                              size: Size(size.width * 0.4, size.height * 0.26),
+                            ),
+                            DownloadsImageWidget(
+                              radius: 50,
+                              size: Size(size.width * 0.4, size.height * 0.28),
+                              imageList:
+                                  '$imageAppendUrl${state.downloads![2].posterPath}',
+                              margin: const EdgeInsets.only(top: 1),
+                              angle: 0,
+                            ),
+                          ],
+                        ),
+            );
+          },
         ),
       ],
     );

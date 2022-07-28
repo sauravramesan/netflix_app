@@ -7,3 +7,4 @@ final BorderRadius kRadius30 = BorderRadius.circular(30);
 final BorderRadius kRadius10 = BorderRadius.circular(10);
 const  kwidth5 = SizedBox(width: 5,);
 TextStyle kHomeTextStyle =  const TextStyle(fontSize: 18,fontWeight: FontWeight.w600);
+const imageAppendUrl = 'https://image.tmdb.org/t/p/w500/';
