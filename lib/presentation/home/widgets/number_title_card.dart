@@ -18,8 +18,12 @@ class NumberTitleCard extends StatelessWidget {
         LimitedBox(
           maxHeight: 220,
           child: ListView(
-    scrollDirection: Axis.horizontal,
-    children: List.generate(10, (index) => Numbercard(index: index,)),
+            scrollDirection: Axis.horizontal,
+            children: List.generate(
+                10,
+                (index) => Numbercard(
+                      index: index,
+                    )),
           ),
         )
       ],

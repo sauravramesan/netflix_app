@@ -56,7 +56,7 @@ class ScreenHome extends StatelessWidget {
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
-                    duration: const Duration(milliseconds: 650),
+                      duration: const Duration(milliseconds: 650),
                       width: double.infinity,
                       height: 130,
                       color: Colors.black.withOpacity(0.35),
@@ -64,8 +64,11 @@ class ScreenHome extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              
-                              Image.asset('assests/images/netflix.png',width: 80,height: 80,),
+                              Image.asset(
+                                'assests/images/netflix.png',
+                                width: 80,
+                                height: 80,
+                              ),
                               const Spacer(),
                               const Icon(
                                 Icons.cast,
@@ -77,18 +80,18 @@ class ScreenHome extends StatelessWidget {
                                 height: 30,
                                 color: Colors.blue,
                               ),
-                              kwidth, 
+                              kwidth,
                             ],
                           ),
                           kheight,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                            Text('TV Shows',style: kHomeTextStyle),
-                            Text('Movies',style: kHomeTextStyle),
-                            Text('Categories',style: kHomeTextStyle)
-                            
-                          ],),
+                              Text('TV Shows', style: kHomeTextStyle),
+                              Text('Movies', style: kHomeTextStyle),
+                              Text('Categories', style: kHomeTextStyle)
+                            ],
+                          ),
                         ],
                       ),
                     )

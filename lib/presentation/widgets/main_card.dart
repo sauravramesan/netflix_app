@@ -15,10 +15,9 @@ class MainCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: kRadius10,
           image: const DecorationImage(
-            image: NetworkImage(
-                'https://i.pinimg.com/564x/99/f8/70/99f8702093bd74454c4636a33f558c4a.jpg'),
-                fit: BoxFit.cover
-          ),
+              image: NetworkImage(
+                  'https://i.pinimg.com/564x/99/f8/70/99f8702093bd74454c4636a33f558c4a.jpg'),
+              fit: BoxFit.cover),
         ),
       ),
     );

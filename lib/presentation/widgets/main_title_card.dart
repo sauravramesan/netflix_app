@@ -4,9 +4,7 @@ import 'package:netflix_app/presentation/widgets/main_card.dart';
 import 'main_title.dart';
 
 class MainTitleCard extends StatelessWidget {
-  const MainTitleCard({
-    Key? key,required this.title
-  }) : super(key: key);
+  const MainTitleCard({Key? key, required this.title}) : super(key: key);
 
   final String title;
   @override

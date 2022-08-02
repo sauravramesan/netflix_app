@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class SearchTextTitle extends StatelessWidget {
   const SearchTextTitle({
-    Key? key,required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   final String title;

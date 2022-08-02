@@ -5,9 +5,15 @@ import 'package:netflix_app/presentation/home/widgets/custom_button_widget.dart'
 import 'package:netflix_app/presentation/new_and_hot/widgets/video_widget.dart';
 
 class EveryoneWatchingWidget extends StatelessWidget {
-  const EveryoneWatchingWidget({
-    Key? key,
-  }) : super(key: key);
+  final String posterPath;
+  final String movieName;
+  final String description;
+
+  const EveryoneWatchingWidget(
+      {super.key,
+      required this.posterPath,
+      required this.movieName,
+      required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -25,33 +31,33 @@ class EveryoneWatchingWidget extends StatelessWidget {
           style: TextStyle(fontSize: 20, color: Colors.grey),
         ),
         kheight25,
-        const VideoWidget(),
+        VideoWidget(url: posterPath,),
         kheight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: const [
             kwidth,
             CustomButtonWidget(
-                        icon: CupertinoIcons.paperplane,
-                        title: 'Share',
-                        iconSize: 23,
-                        textSize: 16,
-                      ),
-                      kwidth,
-                      CustomButtonWidget(
-                        icon: Icons.add,
-                        title: 'My List',
-                        iconSize: 25,
-                        textSize: 15,
-                      ),
-                      kwidth,
-                      CustomButtonWidget(
-                        icon: Icons.play_arrow,
-                        title: 'Play',
-                        iconSize: 27,
-                        textSize: 16,
-                      ),
-                      kwidth,
+              icon: CupertinoIcons.paperplane,
+              title: 'Share',
+              iconSize: 23,
+              textSize: 16,
+            ),
+            kwidth,
+            CustomButtonWidget(
+              icon: Icons.add,
+              title: 'My List',
+              iconSize: 25,
+              textSize: 15,
+            ),
+            kwidth,
+            CustomButtonWidget(
+              icon: Icons.play_arrow,
+              title: 'Play',
+              iconSize: 27,
+              textSize: 16,
+            ),
+            kwidth,
           ],
         ),
       ],

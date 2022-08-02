@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:netflix_app/domain/core/colors/colors.dart';
 
 class VideoWidget extends StatelessWidget {
+  final String url;
   const VideoWidget({
+    required this.url,
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +17,7 @@ class VideoWidget extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.network(
-            'https://gumlet.assettype.com/dtnext%2F2022-04%2Ffeba4c73-89d0-481e-842e-b4eeb9020236%2F08730dbc_bf11_48d7_86f5_71bba9a7cf85.jpg?auto=format%2Ccompress&fit=max&format=webp&w=768&dpr=1.0',
+            url,
             fit: BoxFit.cover,
           ),
         ),
